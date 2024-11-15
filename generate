@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-80">
+        <h1 class="text-xl font-semibold text-center mb-4">Random Account Generator</h1>
+        <div class="mb-4">
+            <label class="block mb-2">Username</label>
+            <input type="text" id="username" class="w-full p-2 border border-gray-300 rounded" disabled>
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2">Password</label>
+            <input type="text" id="password" class="w-full p-2 border border-gray-300 rounded" disabled>
+        </div>
+        <div class="mb-4">
+            <button onclick="generateAccount()" class="w-full bg-blue-500 text-white p-2 rounded">Generate Account</button>
+        </div>
+        <div class="mb-4">
+            <button onclick="copyToClipboard()" class="w-full bg-green-500 text-white p-2 rounded">Copy to Clipboard</button>
+        </div>
+    </div>
+
+    <script>
+        function generateAccount() {
+            // Simulate generating a random username and password
+            const username = 'user_' + Math.random().toString(36).substring(2, 10);
+            const password = Math.random().toString(36).substring(2, 15);
+
+            // Display results
+            document.getElementById('username').value = username;
+            document.getElementById('password').value = password;
+        }
+
+        function copyToClipboard() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const textToCopy = `Username: ${username}\nPassword: ${password}`;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Account details copied!');
+            });
+        }
+    </script>
+</body>
+</html>
